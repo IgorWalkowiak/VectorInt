@@ -22,9 +22,10 @@ VectorInt::VectorInt(void)
         buf->next=new number;
         buf->next->fill=false;
         buf->next->previous=buf;
+        last=buf;
+
         buf=buf->next;
     }
-    last=buf;
     buf->next=NULL;
 
 }
@@ -45,11 +46,13 @@ VectorInt::VectorInt(int a)
             buf->next=new number;
             buf->next->fill=false;
             buf->next->previous=buf;
+            last=buf;
             buf=buf->next;
 
         }
         buf->next=NULL;
-        last=buf;
+
+
     }
 
     else
@@ -186,6 +189,110 @@ int VectorInt::size(void)
     }
     else return 0;
 }
+
+void VectorInt::clear(void)
+{
+
+ if(last!=NULL)
+    {
+        if(last->previous!=NULL)
+        {
+            number* buf=last;
+            while(buf->previous!=NULL )
+            {
+                buf=buf->previous;
+                delete buf->next;
+            }
+                delete first;
+                first=NULL;
+                last=NULL;
+
+        }
+    }
+
+}
+
+void VectorInt::shrinkToFit(void)
+{
+    if(last!=NULL)
+    {
+        if(last->previous!=NULL)
+        {
+            number* buf=last;
+            while(buf->previous!=NULL )
+            {
+                if(buf->previous->fill==false)
+                {
+                buf=buf->previous;
+                delete buf->next;
+                }
+                else
+                {
+                    buf=buf->previous;
+                    delete buf->next;
+                    break;
+                }
+            }
+            buf->next=NULL;
+            if(buf->previous==NULL)
+            {
+                delete first;
+                first=NULL;
+                last=NULL;
+            }
+        }
+    }
+}
+
+int VectorInt::at(int a)
+{
+    if(a>=0)
+    {
+        number* buf=first;
+        for(int i=0;i<a;i++)
+        {
+            if(buf->next!=NULL)
+            {
+            buf=buf->next;
+            }
+            else
+            {
+                std::cout<<"You go out of Vector";
+                return (-1);
+            }
+        }
+        return buf->value;
+    }
+    std::cout<<"You send me wrong index";
+    return 0;
+}
+
+void VectorInt::insert(int index, int data)
+{
+    if(index>=0)
+    {
+        number* buf=first;
+        for(int i=0;i<index;i++)
+        {
+            if(buf->next!=NULL)
+            {
+            buf=buf->next;
+            }
+            else
+            {
+                std::cout<<"You go out of Vector";
+                break;
+            }
+        }
+        buf->value=data;
+    }
+    else
+    {
+        std::cout<<"You send me wrong index";
+    }
+
+}
+
 std::ostream& operator<<(std::ostream& wyjscie,const VectorInt &s)
 {
     if(s.first!=NULL)

@@ -20,14 +20,15 @@ int at(int);
 int size(void);
 int capacity(void);
 
-friend std::ostream& operator<<(std::ostream& wyjscie,const VectorInt &s)
-{
-    return wyjscie<<"test";
-}
+friend std::ostream& operator<<(std::ostream& wyjscie,const VectorInt &s);
+
 
 private:
-    number* toTail(void);
+    number* lastFilledFromFront(void);
+    number* firstFilledFromBack(void);
     number* first;
+    number* last;
+
 };
 
 #endif // VECTORINT_H_INCLUDED

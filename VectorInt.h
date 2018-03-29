@@ -9,14 +9,17 @@ public:
 
 VectorInt(void);
 VectorInt(int);
-int at(int);
+
 void insert(int,int);
 void pushBack(int);
-int popBack(void);
 void shrinkToFit(void);
 void clear(void);
+
+int popBack(void);
+int at(int);
 int size(void);
 int capacity(void);
+
 friend std::ostream& operator<<(std::ostream& wyjscie,const VectorInt &s)
 {
     return wyjscie<<"test";

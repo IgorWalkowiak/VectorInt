@@ -14,10 +14,19 @@ number *next;
 
 int main()
 {
-    VectorInt xD;
-    xD.pushBack(3);
 
-    cout<<xD.popBack();
+ VectorInt xD(0);
+
+    xD.pushBack(5);
+
+
+
+    cout<<xD.popBack()<<endl;
+    cout<<xD.popBack()<<endl;
+    cout<<xD.popBack()<<endl;
+
+
+
 
 
     return 0;

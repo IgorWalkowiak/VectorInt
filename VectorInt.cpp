@@ -285,6 +285,7 @@ void VectorInt::insert(int index, int data)
             }
         }
         buf->value=data;
+        buf->fill=true;
     }
     else
     {

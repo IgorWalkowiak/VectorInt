@@ -4,20 +4,11 @@
 
 using namespace std;
 
-struct number
-{
-int value;
-number *next;
-
-};
-
 
 int main()
 {
 
- VectorInt xD;
-
-
+ VectorInt test;
 
     return 0;
 }
